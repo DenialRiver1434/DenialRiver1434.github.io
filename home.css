@@ -1,0 +1,72 @@
+@import url(fonts/clear-sans.css);
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #1f202c;
+    color:rgb(213, 249, 255);
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+title {
+    font-size: 90px;
+    width: fit-content;
+    padding-right: 20px; padding-left: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 25px;
+    text-align: center;
+    color: #5ec3ca;
+    background-color: rgb(0, 1, 80);
+    display: block;
+}
+
+cap {
+    font-size: 20px;
+    margin: auto;
+    margin-top: 10px;
+    color: #5ec3ca;
+    text-align: center;
+    display: block;
+}
+
+article {
+    padding: 10px;
+    margin: 25px auto;
+    max-width: 694.2px;
+}
+
+sub {
+    font-size: 40px;
+    color: rgb(144, 228, 228);
+    display: block;
+}
+
+p, details {
+    font-size: 20px;
+    margin-left: 15px;
+    padding: 3px;
+}
+
+a {
+    text-decoration: none;
+}
+
+summary {
+    margin: 10px;
+    margin-left: 0;
+}
+
+lis {
+    margin: 10px;
+    margin-left: 30px;
+    padding: 5px;
+    display: list-item;
+}
+
+figcaption {
+    max-width: 195px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px;
+    color: rgb(213, 249, 255);
+}
