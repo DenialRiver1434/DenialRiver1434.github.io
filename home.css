@@ -49,6 +49,7 @@ p, details {
 
 a {
     text-decoration: none;
+    float: left;
 }
 
 summary {
@@ -64,7 +65,7 @@ lis {
 }
 
 figcaption {
-    max-width: 195px;
+    max-width: 175px;
     text-align: center;
     font-weight: bold;
     padding: 2px;
