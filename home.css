@@ -32,6 +32,7 @@ article {
     padding: 10px;
     margin: 25px auto;
     max-width: 694.2px;
+    animation: appear 2s;
 }
 
 sub {
@@ -47,7 +48,7 @@ p {
 }
 
 details {
-    font-size: 20px;
+    font-size: 25px;
     margin-left: 15px;
     padding: 5px;
     width: fit-content;
@@ -59,6 +60,10 @@ details {
     display: inline-block;
 }
 
+details[open] summary ~ * {
+    animation: summaryin 0.5s ease-in-out;
+}
+
 a {
     text-decoration: none;
     color:aqua;
@@ -66,6 +71,7 @@ a {
 
 figure {
     float: left;
+    margin-right: 10px;
 }
 
 summary {
@@ -81,9 +87,27 @@ lis {
 }
 
 figcaption {
-    max-width: 175px;
     text-align: center;
     font-weight: bold;
     padding: 2px;
     color: rgb(213, 249, 255);
+}
+
+@keyframes appear {
+    0%    {opacity: 0; transform: scale(0.5) rotate(20deg);}
+    90%    {opacity: 0.9; transform: scale(1.05)  rotate(0deg); }
+    100%  {opacity: 1; transform: scale(1);}
+}
+@keyframes summaryin {
+    0%    {opacity: 0; transform: rotate(2deg) translateX(-5%);}
+    100%  {opacity: 1; transform: rotate(0deg) translateX(0%);}
+}
+@keyframes summaryin {
+    0%    {opacity: 0; transform: rotate(2deg) translateX(-5%);}
+    100%  {opacity: 1; transform: rotate(0deg) translateX(0%);}
+}
+@keyframes detailin {
+    0%    {opacity: 1; }
+    50%    {opacity: 0; }
+    100%  {opacity: 1; }
 }
