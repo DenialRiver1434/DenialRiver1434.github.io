@@ -93,6 +93,19 @@ figcaption {
     color: rgb(213, 249, 255);
 }
 
+button {
+    display: inline-block;
+    background: #270053;
+    color: rgb(213, 249, 255);
+    font-size: 35px;
+    border-radius: 10px;
+    padding: 0 20px;
+    height: 70px;
+    width: 400px;
+    margin-left: 20px; 
+    text-align: center;
+}
+
 @keyframes appear {
     0%    {opacity: 0; transform: scale(0.5) rotate(20deg);}
     90%    {opacity: 0.9; transform: scale(1.05)  rotate(0deg); }
