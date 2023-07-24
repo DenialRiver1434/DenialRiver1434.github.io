@@ -88,8 +88,8 @@ lis {
 
 figcaption {
     text-align: center;
+    font-size: 12px;
     font-weight: bold;
-    padding: 2px;
     color: rgb(213, 249, 255);
 }
 
