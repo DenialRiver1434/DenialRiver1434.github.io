@@ -40,7 +40,7 @@ details {
     margin-top: 20px;
     border-radius: 25px;
     background-color: #0a2647;
-    display: inline-block;
+    display: block;
 }
 
 details[open] summary ~ * {
