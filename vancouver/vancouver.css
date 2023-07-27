@@ -17,13 +17,21 @@ title {
     display: block;
 }
 
+red {
+    color:red;
+}
+
+green {
+    color:green;
+}
+
 p {
     margin-left: 10px;
     font-size: 20px;
 }
 
 details {
-    font-size: 25px;
+    font-size: 20px;
     margin-left: 15px;
     padding: 5px;
     width: fit-content;
@@ -67,7 +75,11 @@ button {
     text-align: center;
 }
 
+img {
+    height: 400px;
+}
+
 @keyframes summaryin {
-    0%    {opacity: 0; transform: rotate(2deg) translateX(-5%);}
+    0%    {opacity: 0; transform: rotate(2deg) translateX(-2%);}
     100%  {opacity: 1; transform: rotate(0deg) translateX(0%);}
 }
