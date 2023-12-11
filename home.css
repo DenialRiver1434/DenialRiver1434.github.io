@@ -56,7 +56,7 @@ details {
     margin: auto;
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #23232b;
+    background-color: #0a2647;
     display: inline-block;
 }
 
@@ -113,8 +113,8 @@ info {
     padding-right: 15px; padding-left: 15px;
     margin: 10px auto;
     border-radius: 5px;
-    background-color: #920000;
-    color: #ffa3a3;
+    background-color: #924e00;
+    color: #fff9a3;
     display: inline-block;
 }
 
