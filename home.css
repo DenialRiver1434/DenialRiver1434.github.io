@@ -69,6 +69,10 @@ a {
     color:aqua;
 }
 
+img {
+    margin-top: 10px;
+}
+
 figure {
     float: left;
     margin-right: 10px;
