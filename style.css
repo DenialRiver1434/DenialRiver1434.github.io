@@ -264,21 +264,15 @@ summary {
 }
  
 summary::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid #7dd8e0;
-  border-bottom: 2px solid #7dd8e0;
-  transform: rotate(-45deg);
+  content: "▶";
+  font-size: 0.6em;
+  color: #7dd8e0;
   transition: transform 0.2s ease;
   flex-shrink: 0;
-  margin-top: 1px;
 }
  
 details[open] summary::before {
-  transform: rotate(45deg);
-  margin-top: -3px;
+  transform: rotate(90deg);
 }
  
 details p,
