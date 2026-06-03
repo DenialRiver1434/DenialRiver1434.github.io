@@ -213,7 +213,6 @@ info, .info {
   font-size: 14px;
   font-weight: normal;
   line-height: 1.4;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
