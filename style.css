@@ -14,25 +14,22 @@ html, body {
 body {
   margin-bottom: 60px;
 }
- 
-/* --- Layout --- */
+
 .container {
   max-width: 780px;
   margin: 0 auto;
   padding: 0 28px;
 }
- 
-/* --- Header / Hero --- */
-.heading {
-  padding: 64px 28px 30px;
-  margin: 0 -28px 48px;
-}
 
+.heading {
+  padding: 64px 0 30px;
+  margin: 0 0 48px;
+}
+ 
 h1.title {
   color: #5ec3ca;
   font-size: 88px;
-  font-weight: bold;
-  margin: 0 0 0px;
+  margin: 0 -5px 0px;
   display: block;
   line-height: 1.0;
 }
@@ -40,10 +37,11 @@ h1.title {
 .subtitle {
   font-size: 16px;
   color: #7dd8e0;
-  margin: 12px;
+  margin: 12px 0;
 }
- 
-/* --- Headings --- */
+
+
+/* Headings */
 h2 {
   color: rgb(144, 228, 228);
   font-size: 28px;
@@ -62,7 +60,7 @@ h3 {
   margin: 0 0 6px;
 }
  
-/* --- Body Text --- */
+/* Text */
 p {
   color: rgb(213, 249, 255);
   margin-top: 0;
@@ -79,7 +77,7 @@ p.amplified {
   font-weight: bolder;
 }
  
-/* --- Links --- */
+/* Links */
 a {
   color: aqua;
   font-weight: bold;
@@ -93,7 +91,7 @@ a:hover {
   text-decoration: underline;
 }
  
-/* --- Sections --- */
+/* Section End Line */
 .section {
   margin-bottom: 32px;
   padding-bottom: 32px;
@@ -104,7 +102,7 @@ a:hover {
   border-bottom: none;
 }
  
-/* --- Nav links --- */
+/* Nav links (connections) */
 .nav-links {
   list-style: none;
   padding: 0;
@@ -136,7 +134,7 @@ a:hover {
   color: rgb(213, 249, 255);
 }
  
-/* --- Skill boxes --- */
+/* Skill pill boxes */
 info, .info {
   font-size: 15px;
   padding: 3px 15px;
@@ -148,7 +146,7 @@ info, .info {
   display: inline-block;
 }
 
-/* --- Writeup Scrollbox --- */
+/* Writeup Scrollbox */
 .scrollbox {
   height: calc(3 * 96px); /* 3 items visible */
   overflow-y: auto;
@@ -232,7 +230,7 @@ info, .info {
   transform: translateX(3px);
 }
 
-/* --- Dropdowns --- */
+/* Dropdowns */
 details {
   font-size: 20px;
   width: fit-content;
