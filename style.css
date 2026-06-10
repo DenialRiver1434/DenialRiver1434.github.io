@@ -14,22 +14,25 @@ html, body {
 body {
   margin-bottom: 60px;
 }
-
+ 
+/* --- Layout --- */
 .container {
   max-width: 780px;
   margin: 0 auto;
   padding: 0 28px;
 }
-
+ 
+/* --- Header / Hero --- */
 .heading {
   padding: 64px 0 30px;
   margin: 0 0 48px;
 }
- 
+
 h1.title {
   color: #5ec3ca;
   font-size: 88px;
-  margin: 0 -5px 0px;
+  font-weight: bold;
+  margin: 0 0 0px;
   display: block;
   line-height: 1.0;
 }
@@ -39,9 +42,8 @@ h1.title {
   color: #7dd8e0;
   margin: 12px 0;
 }
-
-
-/* Headings */
+ 
+/* --- Headings --- */
 h2 {
   color: rgb(144, 228, 228);
   font-size: 28px;
@@ -60,7 +62,7 @@ h3 {
   margin: 0 0 6px;
 }
  
-/* Text */
+/* --- Body Text --- */
 p {
   color: rgb(213, 249, 255);
   margin-top: 0;
@@ -69,15 +71,11 @@ p {
 }
  
 p.muted {
-  color: #ccc;
+  color: #888;
   font-size: 15px;
 }
  
-p.amplified {
-  font-weight: bolder;
-}
- 
-/* Links */
+/* --- Links --- */
 a {
   color: aqua;
   font-weight: bold;
@@ -91,10 +89,10 @@ a:hover {
   text-decoration: underline;
 }
  
-/* Section End Line */
+/* --- Sections --- */
 .section {
-  margin-bottom: 32px;
-  padding-bottom: 32px;
+  margin-bottom: 52px;
+  padding-bottom: 52px;
   border-bottom: 1px solid #2a3a3b;
 }
 
@@ -102,7 +100,7 @@ a:hover {
   border-bottom: none;
 }
  
-/* Nav links (connections) */
+/* --- Nav links --- */
 .nav-links {
   list-style: none;
   padding: 0;
@@ -134,7 +132,7 @@ a:hover {
   color: rgb(213, 249, 255);
 }
  
-/* Skill pill boxes */
+/* --- Skill boxes --- */
 info, .info {
   font-size: 15px;
   padding: 3px 15px;
@@ -146,7 +144,7 @@ info, .info {
   display: inline-block;
 }
 
-/* Writeup Scrollbox */
+/* --- Writeup Scrollbox --- */
 .scrollbox {
   height: calc(3 * 96px); /* 3 items visible */
   overflow-y: auto;
@@ -184,6 +182,8 @@ info, .info {
   color: inherit;
   font-weight: normal;
   transition: background 0.15s ease;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .writeup-entry:last-child {
@@ -199,13 +199,16 @@ info, .info {
 .writeup-text {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .writeup-title {
   color: #5ec3ca;
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 3px;
+  display: block;
 }
 
 .writeup-desc {
@@ -213,15 +216,10 @@ info, .info {
   font-size: 14px;
   font-weight: normal;
   line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.writeup-arrow {
-  color: #2a5a5e;
-  font-size: 18px;
-  flex-shrink: 0;
-  transition: color 0.15s ease, transform 0.15s ease;
+  white-space: normal;
+  overflow: visible;
+  text-align: left;
+  display: block;
 }
 
 .writeup-entry:hover .writeup-arrow {
@@ -229,11 +227,11 @@ info, .info {
   transform: translateX(3px);
 }
 
-/* Dropdowns */
+/* --- Dropdowns --- */
 details {
   font-size: 20px;
   width: fit-content;
-  padding: 0 18px;
+  padding: 0 18px 0 10px;
   margin: 15px 0;
   border-radius: 6px;
   border-left: 6px solid #637e81;
@@ -268,8 +266,9 @@ summary::before {
   color: #7dd8e0;
   transition: transform 0.2s ease;
   flex-shrink: 0;
+  display: inline-block;
 }
- 
+
 details[open] summary::before {
   transform: rotate(90deg);
 }
@@ -288,6 +287,15 @@ details .detail-body {
   font-size: 13px;
   margin-bottom: 6px;
   padding: 0 6px;
+}
+
+p.amplified {
+  color: #7dd8e0;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 12px 0 2px;
+  padding: 0 6px;
+  line-height: 1.4;
 }
 
 code {
@@ -310,7 +318,8 @@ code {
   0%   { opacity: 0; transform: translateY(-6px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
+ 
+/* --- Responsive --- */
 @media (max-width: 600px) {
   .heading {
     padding: 40px 20px 32px;
