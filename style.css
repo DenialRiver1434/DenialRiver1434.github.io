@@ -17,7 +17,7 @@ body {
  
 /* --- Layout --- */
 .container {
-  max-width: 780px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 28px;
 }
@@ -146,7 +146,7 @@ info, .info {
 
 /* --- Writeup Scrollbox --- */
 .scrollbox {
-  height: calc(3 * 96px); /* 3 items visible */
+  height: calc(4.5 * 96px); /* ~4.5 items visible */
   overflow-y: auto;
   border: 1px solid #2a3a3b;
   border-radius: 8px;
