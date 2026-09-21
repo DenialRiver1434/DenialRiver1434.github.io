@@ -194,11 +194,11 @@ python -m pip install --upgrade \
 
 After consulting Codex, I was told that ```[MODEL] = GPT-2; [TASKS] = IOI; [METHOD] = EAP-IG-inputs``` would be a good starting point. Checking the values in Table 2 and Table 14, the recorded CMD was 0.03 and CPR was 1.85 respectively.
 
-I ran the following commands to run a basic test with less batches than usual just to test things out. In particular, I had Codex write up a Python script that prints out detailed results including the faithfulness at all the levels to do a sanity check.
+I started with running a test to replicate the CMD value. In particular, I had Codex write up a Python script that prints out detailed results including the faithfulness at all the levels to do a sanity check.
 
 <details>
 
-<summary>Test (less compute)</summary>
+<summary>CMD Replication test (GPT-2/IOI/EAG-IG-inp.)</summary>
 
 Training:
 ```
@@ -235,7 +235,7 @@ PY
 
 <details>
 
-<summary>Test Results </summary>
+<summary>CMD Test results </summary>
 
 Using the script, I got much more detailed results and it all checks out.
 
@@ -253,11 +253,11 @@ Everything else checks out.
 
 </details>
 
-For the second test, I tried to replicate the values with default commands. Additionally, I ran into a **<u>problem</u>** where the run would end when I exited the terminal so I ran it with nohup instead.
+For replicating the ```CPR = 1.85```, I tried to write up the commands and replicate the values myself without Codex help. I immediately ran into a **<u>problem</u>** where the run would end when I exited the terminal so I had to ask Codex for help. It told me to run it with nohup instead.
 
 <details>
 
-<summary>Paper Replication Attempt 1</summary>
+<summary>CPR Replication Test (GPT-2/IOI/EAG-IG-inp.)</summary>
 
 This time I wrote the commands myself based on the readme.md.
 
@@ -273,9 +273,9 @@ nohup python run_evaluation.py --models gpt2 --tasks ioi --method EAP-IG-inputs
 
 <details>
 
-<summary>Attempt 1 Result</summary>
+<summary>CPR Test Results</summary>
 
-From ```print_results.py```, the CMD was 0.99 and CPR 1.99, which was way off.
+From ```print_results.py```, the CMD was 0.99 and CPR 1.99. 
 
 ![attempt 1](attempt-1-results.jpg)
 
@@ -283,4 +283,4 @@ From ```print_results.py```, the CMD was 0.99 and CPR 1.99, which was way off.
 
 </details>
 
-Test 2 took significantly longer to finish and signaled I might need to get a more powerful GPU.
+Each test took roughly 30 minutes to finish.
