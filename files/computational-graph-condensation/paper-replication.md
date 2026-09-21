@@ -137,30 +137,116 @@ Line 77 ```dataset = HFEAPDataset(...)``` calls the HFEAPDataset class and looks
 
 </details>
 
-### Recreating a Basic Set of Results
+### Figuring Out Runpod
 
-After consulting Codex, I was told that ```[MODEL] = GPT-2; [TASKS] = IOI; [METHOD] = EAP-IG``` would be a good starting point. Checking the values in Table 2, the recorded CMD was 0.03 and CPR was 1.85.
+I thought this was going to take 15 minutes. It ended up taking the entire day.
 
-The first challenge was trying to figure out how runpod access works. I did the following,
+I did the following to start,
 - Deployed a RTX 4090 pod "MIB-replication" under default configurations and with a volume disk
 - Enabled the web terminal
 <img src="launched-pod.jpg" alt="Pod Deployed" width="400">
 - Downloaded the repository, along with all the dependencies and packages into the pod
 - I tried using ```pip clear cache``` but eventually had to start over on a larger disk 
 
+<details>
+
+<summary>Reopening Terminal Commands</summary>
+
+The pods are like computers (similar to AWS EC2 instances) and accessed through web terminal. Can download files through this way.
+
+To reopen the terminal, 
+- source /workspace/activate-mib.sh
+- cd /workspace/MIB-circuit-track
+- source .venv/bin/activate
+</details>
+
+
 **<u>Problem:</u> The installation of all the dependencies ended up being so large it did not fit on 20Gb**
 
 **<u>Problem:</u> The installed files did not save when I paused and then relaunched in the morning even though I thought it was saved**
 
-Since I had 3.091 class the next day, I connected Codex to Runpod the next day and had it run in the background to start a new pod.
+Since I had 3.091 class the next day, I connected Codex to Runpod the next day and had it run in the background to start a new pod. Since Codex didn't have SSH access, I had it install the packages.
+
+
+**<u>Major Problem:</u> The code continued to fail, reporting that certain dependencies were missing** 
+This took hours to figure out since the error messages were weird with multiple restarts, but it turned out the pod was installed with an image with Torch version 2.14 but requires a different version of torch. The following command fixed the issue:
+```
+python -m pip install \
+  torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 \
+  --index-url https://download.pytorch.org/whl/cu124
+```
+
+**<u>Problem:</u> Received a warning that "NVIDIA RTX PRO 4500 Blackwell with CUDA capability sm_120 is not compatible with the current PyTorch installation."**
+
+The guide (and codex) pointed to,
+```
+export PIP_CACHE_DIR=/workspace/cache/pip
+export TMPDIR=/workspace/tmp
+mkdir -p "$PIP_CACHE_DIR" "$TMPDIR"
+
+python -m pip install --upgrade \
+  torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 \
+  --index-url https://download.pytorch.org/whl/cu128
+```
+<img src="dependencies-resolved.jpg" alt="Dependencies good" width="400">
+
+### Recreating a Basic Set of Results
+
+After consulting Codex, I was told that ```[MODEL] = GPT-2; [TASKS] = IOI; [METHOD] = EAP-IG``` would be a good starting point. Checking the values in Table 2, the recorded CMD was 0.03 and CPR was 1.85.
+
+Therefore, I ran the following commands to run a basic test with less batches than usual just to test things out.
 
 <details>
-<summary>Specifics</summary>
-The pods are like computers (similar to AWS EC2 instances) and accessed through web terminal. Can download files through this way.
 
-To change python installations, 
-- cd /workspace/MIB-circuit-track
-- source .venv/bin/activate
-- python -m pip install ./EAP-IG .
+<summary>Test 1 (Using Codex-generated commands)</summary>
+
+Training:
+```
+python -u run_attribution.py \
+  --models gpt2 --tasks ioi \
+  --method EAP-IG-inputs --ig-steps 5 \
+  --ablation patching --level edge \
+  --split train --num-examples 8 --head 8 --batch-size 1 \
+  --circuit-dir circuits-smoke
+  ```
+Evaluation:
+```
+python -u run_evaluation.py \
+  --models gpt2 --tasks ioi \
+  --method EAP-IG-inputs \
+  --ablation patching --level edge --absolute \
+  --split validation --head 8 --batch-size 1 \
+  --circuit-dir circuits-smoke --output-dir results-smoke
+```
+Access:
+```
+python - <<'PY'
+import pickle
+with open("results-smoke/EAP-IG-inputs_patching_edge/ioi_gpt2_validation_abs-True.pkl", "rb") as f:
+    results = pickle.load(f)
+for key, value in results.items():
+    print(f"{key}: {value}")
+PY
+```
+Output:
+
 </details>
 
+<details>
+
+<summary>Test 1 Results </summary>
+
+CPR → 0.9654
+CMD → 0.0441
+```
+weighted_edge_counts: [22.0, 50.0, 142.0, 289.0, 611.0, 1569.0, 3242.0, 6498.0, 16245.0, 32491.0]
+area_under: 0.9653902172751483
+area_from_1: 0.04412530505505405
+average: 0.6665325967025308
+faithfulnesses: [0.019733655092845453, 0.0887017567842513, 0.30987243945853277, 0.6089829995759188, 0.9111720307934588, 0.8767607049910842, 0.9323771262762143, 0.9045808511402504, 1.013144402912753, 1.0]
+```
+Everything else checks out.
+
+</details>
+
+To repli
