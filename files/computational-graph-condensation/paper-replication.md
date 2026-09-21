@@ -192,13 +192,13 @@ python -m pip install --upgrade \
 
 ### Recreating a Basic Set of Results
 
-After consulting Codex, I was told that ```[MODEL] = GPT-2; [TASKS] = IOI; [METHOD] = EAP-IG``` would be a good starting point. Checking the values in Table 2, the recorded CMD was 0.03 and CPR was 1.85.
+After consulting Codex, I was told that ```[MODEL] = GPT-2; [TASKS] = IOI; [METHOD] = EAP-IG-inputs``` would be a good starting point. Checking the values in Table 2 and Table 14, the recorded CMD was 0.03 and CPR was 1.85 respectively.
 
-Therefore, I ran the following commands to run a basic test with less batches than usual just to test things out.
+I ran the following commands to run a basic test with less batches than usual just to test things out. In particular, I had Codex write up a Python script that prints out detailed results including the faithfulness at all the levels to do a sanity check.
 
 <details>
 
-<summary>Test 1 (Using Codex-generated commands)</summary>
+<summary>Test (less compute)</summary>
 
 Training:
 ```
@@ -218,7 +218,9 @@ python -u run_evaluation.py \
   --split validation --head 8 --batch-size 1 \
   --circuit-dir circuits-smoke --output-dir results-smoke
 ```
-Access:
+
+Here's the Python script codex made to display detailed output.
+
 ```
 python - <<'PY'
 import pickle
@@ -228,16 +230,18 @@ for key, value in results.items():
     print(f"{key}: {value}")
 PY
 ```
-Output:
 
 </details>
 
 <details>
 
-<summary>Test 1 Results </summary>
+<summary>Test Results </summary>
+
+Using the script, I got much more detailed results and it all checks out.
 
 CPR → 0.9654
 CMD → 0.0441
+
 ```
 weighted_edge_counts: [22.0, 50.0, 142.0, 289.0, 611.0, 1569.0, 3242.0, 6498.0, 16245.0, 32491.0]
 area_under: 0.9653902172751483
@@ -249,4 +253,34 @@ Everything else checks out.
 
 </details>
 
-To repli
+For the second test, I tried to replicate the values with default commands. Additionally, I ran into a **<u>problem</u>** where the run would end when I exited the terminal so I ran it with nohup instead.
+
+<details>
+
+<summary>Paper Replication Attempt 1</summary>
+
+This time I wrote the commands myself based on the readme.md.
+
+```
+python run_attribution.py --models gpt2 --tasks ioi --method EAP-IG-inputs
+```
+
+```
+nohup python run_evaluation.py --models gpt2 --tasks ioi --method EAP-IG-inputs
+```
+
+</details>
+
+<details>
+
+<summary>Attempt 1 Result</summary>
+
+From ```print_results.py```, the CMD was 0.99 and CPR 1.99, which was way off.
+
+![attempt 1](attempt-1-results.jpg)
+
+
+
+</details>
+
+Test 2 took significantly longer to finish and signaled I might need to get a more powerful GPU.
